@@ -1,0 +1,22 @@
+Reporte del Estado del Proyecto
+
+Autor Original del Proyecto: Monterrosa, Martín
+Autor del Reporte: Mosconi, Ignacio
+
+Observaciones sobre la Configuración del Proyecto
+
+- No se realiza la copia de las librerías de enlazado dinámico de forma apropiada a través de los eventos posteriores a la compilación, dado a que los archivos "dll" correspondientes se hallan ignorados. Esto se debe al hecho de que los mismos probablemente se encontraban ubicados en una carpeta "bin" dentro del directorio de las dependencias externas, la cual posiblemente haya sido ignorada accidentalmente.
+
+- No se ha configurado la opción de "subsistema" dentro de las configuraciones del enlazador, por lo que tanto en la versión "debug" como la versión "release" se muestra la ventana de la consola de comandos (hubiese sido óptimo que dicha ventana no se muestre en la versión "release").
+
+Observaciones sobre las Prácticas de Programación
+
+- La totalidad de la lógica del programa se encuentra comprimida dentro de la función "main"; no se ha llevado a cabo una
+conveniente modularización del proyecto, por lo que toda la lógica se halla unificada. La comprensión del código no se ha dificultado demasiado porque se trataba de un juego sencillo, pero hubiese sido recomendable la creación de diferentes clases desde el comienzo del proyecto, facilitando así la continuación del trabajo.
+
+- El programa hace uso de la "cola de eventos" (event queue) y el "temporizador" (timer) incluidos en la funcionalidad de Allegro. Ambos módulos de la libería son llamados con sus respectivas funciones de creación ("al_create_event_queue" y "al_create_timer"), pero nunca se llama a la función que libera la memoria reservada por ellas ("al_destroy_event_queue" y "al_destroy_timer").
+
+- En las líneas 47 y 48 del archivo "Main.cpp" se llevan a cabo dos instrucciones de forma innecesaria: 	al_clear_to_color(al_map_rgb(0, 0, 0));
+	
+al_flip_display();
+Esto se debe al hecho de que la lógica de dibujado se encuentra presente en el "loop" principal.
