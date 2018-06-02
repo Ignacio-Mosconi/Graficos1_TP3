@@ -27,7 +27,7 @@ public:
 	~HUD();
 
 	void update(Element element, int amount);
-	void draw();
+	void draw(const int playerLives) const; 
 };
 
 #endif

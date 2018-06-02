@@ -111,7 +111,7 @@ void Game::draw() const
 			if (_spaceships[i]->isEnabled())
 				al_draw_bitmap(_spaceships[i]->getSprite(), _spaceships[i]->getX(), _spaceships[i]->getY(), false);
 
-		_hud->draw();
+		_hud->draw(_player->getLives());
 
 		al_flip_display();
 	}
