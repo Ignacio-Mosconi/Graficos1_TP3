@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <iostream>
 
 Player::Player(int x, int y, const char* imagePath) : Entity(x, y, imagePath)
 {

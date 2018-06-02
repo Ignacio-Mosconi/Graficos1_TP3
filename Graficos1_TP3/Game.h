@@ -6,6 +6,7 @@
 #include "State.h"
 #include "Player.h"
 #include "Asteroid.h"
+#include "Spaceship.h"
 #include "HUD.h"
 
 class Game : public State
@@ -14,6 +15,7 @@ private:
 	Player* _player;
 	Bullet* _pBullets;
 	Asteroid* _asteroids[ASTEROIDS];
+	Spaceship* _spaceships[SPACESHIPS];
 	HUD* _hud;
 
 	bool _gameOver;

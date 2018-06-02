@@ -31,20 +31,25 @@
 // Enemy Attributes
 #define SPACESHIPS 3
 #define SPACESHIP_SCORE 10
+#define SPACESHIP_MIN_SPEED 200
+#define SPACESHIP_MAX_SPEED 400
 #define SPACESHIP_WIDTH 128
 #define SPACESHIP_HEIGHT 90
 #define SPACESHIP_MIN_X 0
 #define SPACESHIP_MAX_X 1600
-#define SPACESHIP_MIN_Y 90
-#define SPACESHIP_MAX_Y 865
+#define SPACESHIP_MIN_Y 122
+#define SPACESHIP_MAX_Y 833
 #define SPACESHIP_MIN_SPAWN_TIME 3
 #define SPACESHIP_MAX_SPAWN_TIME 6
+#define SPACESHIP_MIN_WAVE_AMPLITUDE 8
+#define SPACESHIP_MAX_WAVE_AMPLITUDE 32
+#define SPACESHIP_WAVE_FREQUENCY  3 * 3.1415927
 
 // Asteroid Attributes
 #define ASTEROIDS 7
 #define ASTEROID_SCORE 5
-#define ASTEROID_MIN_SPEED 75
-#define ASTEROID_MAX_SPEED 150
+#define ASTEROID_MIN_SPEED 100
+#define ASTEROID_MAX_SPEED 200
 #define ASTEROID_WIDTH 64
 #define ASTEROID_HEIGHT 45
 #define ASTEROID_MIN_X 0
@@ -67,6 +72,7 @@
 #define BULLET_PATH "Assets/Images/Bullet.png"
 #define ENEMY_PATH "Assets/Images/Enemy.png"
 #define ASTEROID_PATH "Assets/Images/Asteroid.png"
+#define SPACESHIP_PATH "Assets/Images/Spaceship.png"
 #define ICON_PATH "Assets/Images/Icon.png"
 
 // Font Paths

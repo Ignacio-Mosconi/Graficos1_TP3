@@ -7,8 +7,11 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 	_player = new Player(PLAYER_INITIAL_X, SCREEN_HEIGHT / 2, PLAYER_PATH);
 	_pBullets = _player->getBullets();
 	for (int i = 0; i < ASTEROIDS; i++)
-		_asteroids[i] = new Asteroid(ASTEROID_MAX_X, rand() % (ASTEROID_MAX_Y - ASTEROID_HEIGHT - ASTEROID_MIN_Y + 1) + ASTEROID_MIN_Y,
-			ASTEROID_PATH);
+		_asteroids[i] = new Asteroid(ASTEROID_MAX_X, 
+			rand() % (ASTEROID_MAX_Y - ASTEROID_HEIGHT - ASTEROID_MIN_Y + 1) + ASTEROID_MIN_Y, ASTEROID_PATH);
+	for (int i = 0; i < SPACESHIPS; i++)
+		_spaceships[i] = new Spaceship(SPACESHIP_MAX_X, 
+			rand() % (SPACESHIP_MAX_Y - SPACESHIP_HEIGHT - SPACESHIP_MIN_Y + 1) + SPACESHIP_MIN_Y, SPACESHIP_PATH);
 
 	_hud = new HUD(_display);
 
@@ -23,6 +26,9 @@ Game::~Game()
 	for (int i = 0; i < ASTEROIDS; i++)
 		if (_asteroids[i])
 			delete _asteroids[i];
+	for (int i = 0; i < SPACESHIPS; i++)
+		if (_spaceships[i])
+			delete _spaceships[i];
 	if (_hud)
 		delete _hud;
 }
@@ -59,6 +65,9 @@ void Game::update()
 		for (int i = 0; i < ASTEROIDS; i++)
 			if (pAux->isEnabled() && _asteroids[i]->isEnabled() && collide(pAux, _asteroids[i]))
 				bulletEnemyCollision(pAux, _asteroids[i]);
+		for (int i = 0; i < SPACESHIPS; i++)
+			if (pAux->isEnabled() && _spaceships[i]->isEnabled() && collide(pAux, _spaceships[i]))
+				bulletEnemyCollision(pAux, _spaceships[i]);
 		pAux++;
 	}
 
@@ -67,6 +76,13 @@ void Game::update()
 		_asteroids[i]->update(elapsed);
 		if (_asteroids[i]->isEnabled() && collide(_player, _asteroids[i]))
 			playerEnemyCollision(_player, _asteroids[i]);
+	}
+
+	for (int i = 0; i < SPACESHIPS; i++)
+	{
+		_spaceships[i]->update(elapsed);
+		if (_spaceships[i]->isEnabled() && collide(_player, _spaceships[i]))
+			playerEnemyCollision(_player, _spaceships[i]);
 	}
 }
 
@@ -90,6 +106,10 @@ void Game::draw() const
 		for (int i = 0; i < ASTEROIDS; i++)
 			if (_asteroids[i]->isEnabled())
 				al_draw_bitmap(_asteroids[i]->getSprite(), _asteroids[i]->getX(), _asteroids[i]->getY(), false);
+
+		for (int i = 0; i < SPACESHIPS; i++)
+			if (_spaceships[i]->isEnabled())
+				al_draw_bitmap(_spaceships[i]->getSprite(), _spaceships[i]->getX(), _spaceships[i]->getY(), false);
 
 		_hud->draw();
 
