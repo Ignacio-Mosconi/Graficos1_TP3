@@ -6,6 +6,10 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 
 	_player = new Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_PATH);
 	_pBullets = _player->getBullets();
+	for (int i = 0; i < ASTEROIDS; i++)
+		_asteroids[i] = new Asteroid(ASTEROID_MAX_X, rand() % (ASTEROID_MAX_Y - ASTEROID_HEIGHT - ASTEROID_MIN_Y + 1) + ASTEROID_MIN_Y,
+			ASTEROID_PATH);
+
 	_hud = new HUD(_display);
 
 	_gameOver = false;
@@ -16,6 +20,9 @@ Game::~Game()
 {
 	if (_player)
 		delete _player;
+	for (int i = 0; i < ASTEROIDS; i++)
+		if (_asteroids[i])
+			delete _asteroids[i];
 	if (_hud)
 		delete _hud;
 }
@@ -51,6 +58,12 @@ void Game::update()
 		pAux->update(elapsed);
 		pAux++;
 	}
+
+	for (int i = 0; i < ASTEROIDS; i++)
+	{
+		_asteroids[i]->update(elapsed);
+		cout << elapsed << endl;
+	}
 }
 
 void Game::draw() const
@@ -69,6 +82,10 @@ void Game::draw() const
 				al_draw_bitmap(pAux->getSprite(), pAux->getX(), pAux->getY(), false);
 			pAux++;
 		}
+
+		for (int i = 0; i < ASTEROIDS; i++)
+			if (_asteroids[i]->isEnabled())
+				al_draw_bitmap(_asteroids[i]->getSprite(), _asteroids[i]->getX(), _asteroids[i]->getY(), false);
 
 		_hud->draw();
 
