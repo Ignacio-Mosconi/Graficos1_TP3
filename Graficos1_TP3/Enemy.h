@@ -11,7 +11,7 @@ enum Type
 class Enemy : public Entity
 {
 protected:
-	float _speed;
+	int _speed;
 	float _spawnTime;
 	bool _enabled;
 

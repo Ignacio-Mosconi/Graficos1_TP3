@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(int x, int y, const char* imagePath) : Entity(x, y, imagePath)
 {
@@ -15,23 +16,32 @@ Player::~Player()
 
 void Player::move(Direction direction, float elapsed)
 {
+	int distance = _speed * elapsed;
 	switch (direction)
 	{
 		case LEFT:
-			if (_x > PLAYER_MIN_X)
-				_x -= _speed * elapsed;
+			if (_x - distance > PLAYER_MIN_X)
+				_x -= distance;
+			else
+				_x = PLAYER_MIN_X;
 			break;
 		case RIGHT:
-			if (_x + PLAYER_WIDTH < PLAYER_MAX_X)
-				_x += _speed * elapsed;
+			if (_x + PLAYER_WIDTH + distance < PLAYER_MAX_X)
+				_x += distance;
+			else
+				_x = PLAYER_MAX_X - PLAYER_WIDTH;
 			break;
 		case UP:
-			if (_y > PLAYER_MIN_Y)
-				_y -= _speed * elapsed;
+			if (_y + distance > PLAYER_MIN_Y)
+				_y -= distance;
+			else
+				_y = PLAYER_MIN_Y;
 			break;
 		case DOWN:
-			if (_y + PLAYER_HEIGHT < PLAYER_MAX_Y)
+			if (_y + PLAYER_HEIGHT + distance < PLAYER_MAX_Y)
 				_y += _speed * elapsed;
+			else
+				_y = PLAYER_MAX_Y - PLAYER_HEIGHT;
 			break;
 	}
 }

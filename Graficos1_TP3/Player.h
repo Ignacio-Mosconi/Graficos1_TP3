@@ -14,7 +14,7 @@ class Player : public Entity
 private:
 	Bullet* _bullets;
 	int _lives;
-	float _speed;
+	int _speed;
 	float _shotCooldown;
 
 	void move(Direction direction, float elapsed);

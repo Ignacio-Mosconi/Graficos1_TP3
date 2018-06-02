@@ -6,7 +6,7 @@
 class Bullet : public Entity
 {
 private:
-	float _speed;
+	int _speed;
 	bool _enabled;
 	
 public:
