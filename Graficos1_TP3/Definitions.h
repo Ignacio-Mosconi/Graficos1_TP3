@@ -17,10 +17,12 @@
 #define PLAYER_MAX_Y 865
 #define PLAYER_SPEED 500
 #define PLAYER_LIVES 3
+#define PLAYER_SHOT_COOLDOWN 0.25
 
 // Bullet Attributes
 #define BULLETS 10
 #define BULLET_WIDTH 48
+#define BULLET_SPEED 1000
 #define BULLET_HEIGHT 18
 #define BULLET_MIN_X 0
 #define BULLET_MAX_X 1600
@@ -59,6 +61,7 @@
 
 // Image Paths
 #define PLAYER_PATH "Assets/Images/Player.png"
+#define BULLET_PATH "Assets/Images/Bullet.png"
 #define ENEMY_PATH "Assets/Images/Enemy.png"
 #define ASTEROID_PATH "Assets/Images/Asteroid.png"
 #define ICON_PATH "Assets/Images/Icon.png"

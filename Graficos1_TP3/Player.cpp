@@ -2,13 +2,15 @@
 
 Player::Player(int x, int y, const char* imagePath) : Entity(x, y, imagePath)
 {
+	_bullets = new Bullet[BULLETS];
 	_lives = PLAYER_LIVES;
 	_speed = PLAYER_SPEED;
+	_shotCooldown = 0;
 }
 
 Player::~Player()
 {
-
+	delete[] _bullets;
 }
 
 void Player::move(Direction direction, float elapsed)
@@ -34,6 +36,25 @@ void Player::move(Direction direction, float elapsed)
 	}
 }
 
+void Player::shoot(float elapsed)
+{
+	if (_shotCooldown <= 0)
+	{
+		Bullet* pAux = _bullets;
+		_shotCooldown = PLAYER_SHOT_COOLDOWN;
+		for (int i = 0; i < BULLETS; i++)
+		{
+			if (!pAux->isEnabled())
+			{
+				pAux->setPosition(_x + PLAYER_WIDTH, _y + PLAYER_HEIGHT / 2);
+				pAux->enable();
+				break;
+			}
+			pAux++;
+		}
+	}
+}
+
 void Player::update(float elapsed)
 {
 	ALLEGRO_KEYBOARD_STATE keyState;
@@ -47,6 +68,10 @@ void Player::update(float elapsed)
 		move(Up, elapsed);
 	if (al_key_down(&keyState, ALLEGRO_KEY_DOWN))
 		move(Down, elapsed);
+
+	if (al_key_down(&keyState, ALLEGRO_KEY_S))
+		shoot(elapsed);
+	_shotCooldown -= elapsed;
 }
 
 void Player::die()

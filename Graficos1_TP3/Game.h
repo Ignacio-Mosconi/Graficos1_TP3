@@ -10,7 +10,8 @@
 class Game : public State
 {
 private:
-	Player * _player;
+	Player* _player;
+	Bullet* _pBullets;
 	HUD* _hud;
 
 	bool _gameOver;
@@ -19,7 +20,7 @@ private:
 protected:
 	void input();
 	void update();
-	void draw();
+	void draw() const;
 
 	bool collide(Entity* a, Entity* b);
 

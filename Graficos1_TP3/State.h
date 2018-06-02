@@ -11,12 +11,12 @@ protected:
 	ALLEGRO_EVENT_QUEUE* _queue;
 	ALLEGRO_TIMER* _timer;
 
-	bool _canDraw;
+	mutable bool _canDraw;
 	float _timeAtLastFrame;
 
 	virtual void input() = 0;
 	virtual void update() = 0;
-	virtual void draw() = 0;
+	virtual void draw() const = 0;
 
 public:
 	State(ALLEGRO_DISPLAY* display);

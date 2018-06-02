@@ -5,6 +5,7 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 	srand(time(0));
 
 	_player = new Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_PATH);
+	_pBullets = _player->getBullets();
 	_hud = new HUD(_display);
 
 	_gameOver = false;
@@ -43,9 +44,16 @@ void Game::update()
 	_timeAtLastFrame = al_get_time();
 
 	_player->update(elapsed);
+
+	Bullet* pAux = _pBullets;
+	for (int i = 0; i < BULLETS; i++)
+	{
+		pAux->update(elapsed);
+		pAux++;
+	}
 }
 
-void Game::draw()
+void Game::draw() const
 {
 	if (_canDraw)
 	{
@@ -53,6 +61,15 @@ void Game::draw()
 		al_clear_to_color(al_map_rgba(0, 0, 0, 0));
 
 		al_draw_bitmap(_player->getSprite(), _player->getX(), _player->getY(), false);
+
+		Bullet* pAux = _pBullets;
+		for (int i = 0; i < BULLETS; i++)
+		{
+			if (pAux->isEnabled())
+				al_draw_bitmap(pAux->getSprite(), pAux->getX(), pAux->getY(), false);
+			pAux++;
+		}
+
 		_hud->draw();
 
 		al_flip_display();
