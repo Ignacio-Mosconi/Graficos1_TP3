@@ -1,6 +1,6 @@
 #include "Asteroid.h"
 
-Asteroid::Asteroid(int x, int y, const char* imagePath) : Entity(x, y, imagePath)
+Asteroid::Asteroid(int x, int y, const char* imagePath) : Enemy(x, y, imagePath)
 {
 	_speed = rand() % (ASTEROID_MAX_SPEED - ASTEROID_MIN_SPEED + 1) + ASTEROID_MIN_SPEED;
 	_spawnTime = rand() % (ASTEROID_MAX_SPAWN_TIME - ASTEROID_MIN_SPAWN_TIME + 1) + ASTEROID_MIN_SPAWN_TIME;

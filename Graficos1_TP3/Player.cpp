@@ -17,19 +17,19 @@ void Player::move(Direction direction, float elapsed)
 {
 	switch (direction)
 	{
-		case Left:
+		case LEFT:
 			if (_x > PLAYER_MIN_X)
 				_x -= _speed * elapsed;
 			break;
-		case Right:
+		case RIGHT:
 			if (_x + PLAYER_WIDTH < PLAYER_MAX_X)
 				_x += _speed * elapsed;
 			break;
-		case Up:
+		case UP:
 			if (_y > PLAYER_MIN_Y)
 				_y -= _speed * elapsed;
 			break;
-		case Down:
+		case DOWN:
 			if (_y + PLAYER_HEIGHT < PLAYER_MAX_Y)
 				_y += _speed * elapsed;
 			break;
@@ -61,13 +61,13 @@ void Player::update(float elapsed)
 	al_get_keyboard_state(&keyState);
 
 	if (al_key_down(&keyState, ALLEGRO_KEY_LEFT))
-		move(Left, elapsed);
+		move(LEFT, elapsed);
 	if (al_key_down(&keyState, ALLEGRO_KEY_RIGHT))
-		move(Right, elapsed);
+		move(RIGHT, elapsed);
 	if (al_key_down(&keyState, ALLEGRO_KEY_UP))
-		move(Up, elapsed);
+		move(UP, elapsed);
 	if (al_key_down(&keyState, ALLEGRO_KEY_DOWN))
-		move(Down, elapsed);
+		move(DOWN, elapsed);
 
 	if (al_key_down(&keyState, ALLEGRO_KEY_S))
 		shoot(elapsed);
@@ -83,6 +83,6 @@ void Player::die()
 
 void Player::respawn()
 {
-	_x = SCREEN_WIDTH / 2;
+	_x = PLAYER_INITIAL_X;
 	_y = SCREEN_HEIGHT / 2;
 }

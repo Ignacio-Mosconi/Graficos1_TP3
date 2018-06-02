@@ -176,6 +176,7 @@ copy "$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\bin\allegro_main-5.1.dl
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Definitions.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HUD.h" />

@@ -4,7 +4,7 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 {
 	srand(time(0));
 
-	_player = new Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_PATH);
+	_player = new Player(PLAYER_INITIAL_X, SCREEN_HEIGHT / 2, PLAYER_PATH);
 	_pBullets = _player->getBullets();
 	for (int i = 0; i < ASTEROIDS; i++)
 		_asteroids[i] = new Asteroid(ASTEROID_MAX_X, rand() % (ASTEROID_MAX_Y - ASTEROID_HEIGHT - ASTEROID_MIN_Y + 1) + ASTEROID_MIN_Y,
@@ -56,13 +56,17 @@ void Game::update()
 	for (int i = 0; i < BULLETS; i++)
 	{
 		pAux->update(elapsed);
+		for (int i = 0; i < ASTEROIDS; i++)
+			if (pAux->isEnabled() && _asteroids[i]->isEnabled() && collide(pAux, _asteroids[i]))
+				bulletEnemyCollision(pAux, _asteroids[i]);
 		pAux++;
 	}
 
 	for (int i = 0; i < ASTEROIDS; i++)
 	{
 		_asteroids[i]->update(elapsed);
-		cout << elapsed << endl;
+		if (_asteroids[i]->isEnabled() && collide(_player, _asteroids[i]))
+			playerEnemyCollision(_player, _asteroids[i]);
 	}
 }
 
@@ -102,6 +106,31 @@ bool Game::collide(Entity* a, Entity* b)
 		return true;
 	else
 		return false;
+}
+
+void Game::playerEnemyCollision(Player* p, Enemy* e)
+{
+	p->die();
+	e->disable();
+	_hud->update(LIVES, p->getLives());
+	if (p->getLives() == 0)
+		_gameOver = true;
+}
+
+void Game::bulletEnemyCollision(Bullet* b, Enemy* e)
+{
+	b->disable();
+	e->disable();
+	switch (e->getType())
+	{
+		case ASTEROID:
+			_score += ASTEROID_SCORE;
+			break;
+		case SPACESHIP:
+			_score += SPACESHIP_SCORE;
+			break;
+	}
+	_hud->update(SCORE, _score);
 }
 
 void Game::run()

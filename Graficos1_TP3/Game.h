@@ -25,6 +25,8 @@ protected:
 	void draw() const;
 
 	bool collide(Entity* a, Entity* b);
+	void playerEnemyCollision(Player* p, Enemy* e);
+	void bulletEnemyCollision(Bullet* b, Enemy* e);
 
 public:
 	Game(ALLEGRO_DISPLAY* display);

@@ -10,6 +10,7 @@
 
 // Player Attributes
 #define PLAYER_WIDTH 128
+#define PLAYER_INITIAL_X 64
 #define PLAYER_HEIGHT 90
 #define PLAYER_MIN_X 32
 #define PLAYER_MAX_X 1568
@@ -28,16 +29,16 @@
 #define BULLET_MAX_X 1600
 
 // Enemy Attributes
-#define ENEMIES 3
-#define ENEMY_SCORE 10
-#define ENEMY_WIDTH 128
-#define ENEMY_HEIGHT 90
-#define ENEMY_MIN_X 0
-#define ENEMY_MAX_X 1600
-#define ENEMY_MIN_Y 90
-#define ENEMY_MAX_Y 865
-#define ENEMY_MIN_SPAWN_TIME 3
-#define ENEMY_MAX_SPAWN_TIME 6
+#define SPACESHIPS 3
+#define SPACESHIP_SCORE 10
+#define SPACESHIP_WIDTH 128
+#define SPACESHIP_HEIGHT 90
+#define SPACESHIP_MIN_X 0
+#define SPACESHIP_MAX_X 1600
+#define SPACESHIP_MIN_Y 90
+#define SPACESHIP_MAX_Y 865
+#define SPACESHIP_MIN_SPAWN_TIME 3
+#define SPACESHIP_MAX_SPAWN_TIME 6
 
 // Asteroid Attributes
 #define ASTEROIDS 7

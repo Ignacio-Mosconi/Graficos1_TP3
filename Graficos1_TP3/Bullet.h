@@ -2,7 +2,6 @@
 #define BULLET_H
 
 #include "Entity.h"
-#include "Definitions.h"
 
 class Bullet : public Entity
 {

@@ -1,24 +1,18 @@
 #ifndef ASTEROID_H
 #define ASTEROID_H
 
-#include "Entity.h"
+#include "Enemy.h"
 
-class Asteroid : public Entity
+class Asteroid : public Enemy
 {
-private:
-	float _speed;
-	float _spawnTime;
-	bool _enabled;
-
 public:
 	Asteroid(int x, int y, const char* imagePath);
 	~Asteroid();
 
 	void update(float elapsed);
 
-	inline bool isEnabled() { return _enabled; }
-	void disable() { _enabled = false; }
 	void respawn();
+	Type getType() { return ASTEROID; }
 };
 
 #endif

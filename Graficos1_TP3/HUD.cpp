@@ -17,10 +17,10 @@ void HUD::update(Element element, int amount)
 {
 	switch (element)
 	{
-		case Score:
+		case SCORE:
 			_scoreText = "Score: " + to_string(amount);
 			break;
-		case Lives:
+		case LIVES:
 			_livesText = "Lives: " + to_string(amount);
 			break;
 	}

@@ -10,7 +10,7 @@ using namespace std;
 
 enum Element
 {
-	Score, Lives
+	SCORE, LIVES
 };
 
 class HUD

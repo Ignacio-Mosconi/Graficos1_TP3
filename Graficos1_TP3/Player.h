@@ -6,7 +6,7 @@
 
 enum Direction
 {
-	Left, Right, Up, Down
+	LEFT, RIGHT, UP, DOWN
 };
 
 class Player : public Entity
