@@ -16,6 +16,8 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 	_hud = new HUD(_display);
 
 	_gameOver = false;
+	_quited = false;
+	_paused = false;
 	_score = 0;
 }
 
@@ -46,17 +48,21 @@ void Game::input()
 				_canDraw = true;
 				break;
 			case ALLEGRO_EVENT_DISPLAY_CLOSE:
-				//_gameOver = true;
-				exit;
+				_quited = true;
 				break;
+			case ALLEGRO_EVENT_KEY_UP:
+				if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
+				{
+					if (!_paused)
+						pause();
+					else
+						resume();
+				}
 		}
 }
 
-void Game::update()
+void Game::update(float elapsed)
 {
-	float elapsed = al_get_time() - _timeAtLastFrame;
-	_timeAtLastFrame = al_get_time();
-
 	_player->update(elapsed);
 
 	Bullet* pAux = _pBullets;
@@ -112,7 +118,7 @@ void Game::draw() const
 			if (_spaceships[i]->isEnabled())
 				al_draw_bitmap(_spaceships[i]->getSprite(), _spaceships[i]->getX(), _spaceships[i]->getY(), false);
 
-		_hud->draw(_player->getLives());
+		_hud->draw(_player->getLives(), _paused);
 
 		al_flip_display();
 	}
@@ -154,12 +160,26 @@ void Game::bulletEnemyCollision(Bullet* b, Enemy* e)
 	_hud->update(SCORE, _score);
 }
 
+void Game::pause()
+{
+	_paused = true;
+}
+
+void Game::resume()
+{
+	_paused = false;
+}
+
 void Game::run()
 {
-	while (!_gameOver)
+	while (!_gameOver & !_quited)
 	{
+		float elapsed = al_get_time() - _timeAtLastFrame;
+		_timeAtLastFrame = al_get_time();
+
 		input();
-		update();
+		if (!_paused)
+			update(elapsed);
 		draw();
 	}
 }

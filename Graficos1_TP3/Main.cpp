@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 	menu = new Menu(display);
 	game = new Game(display);
 
-	while (!menu->quited())
+	while (!menu->quited() && !game->quited())
 	{
 		menu->show();
 		if (menu->started())

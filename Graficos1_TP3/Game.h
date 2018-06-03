@@ -19,22 +19,29 @@ private:
 	HUD* _hud;
 
 	bool _gameOver;
+	bool _quited;
+	bool _paused;
 	int _score;
-
-protected:
-	void input();
-	void update();
-	void draw() const;
 
 	bool collide(Entity* a, Entity* b);
 	void playerEnemyCollision(Player* p, Enemy* e);
 	void bulletEnemyCollision(Bullet* b, Enemy* e);
+
+	void pause();
+	void resume();
+
+protected:
+	void input();
+	void update(float elapsed);
+	void draw() const;
 
 public:
 	Game(ALLEGRO_DISPLAY* display);
 	~Game();
 
 	void run();
+
+	bool quited() { return _quited; }
 };
 
 #endif

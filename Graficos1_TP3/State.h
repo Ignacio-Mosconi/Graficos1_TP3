@@ -15,7 +15,7 @@ protected:
 	float _timeAtLastFrame;
 
 	virtual void input() = 0;
-	virtual void update() = 0;
+	virtual void update(float elapsed) = 0;
 	virtual void draw() const = 0;
 
 public:

@@ -32,7 +32,7 @@ private:
 
 protected:
 	void input();
-	void update();
+	void update(float elapsed);
 	void draw() const;
 
 public:

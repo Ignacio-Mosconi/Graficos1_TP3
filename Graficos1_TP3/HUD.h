@@ -17,17 +17,19 @@ class HUD
 {
 private:
 	ALLEGRO_DISPLAY * _display;
-	ALLEGRO_FONT* _font;
+	ALLEGRO_FONT* _hudFont;
+	ALLEGRO_FONT* _pausedFont;
 
 	string _scoreText;
 	string _livesText;
+	string _pausedText;
 
 public:
 	HUD(ALLEGRO_DISPLAY* _display);
 	~HUD();
 
 	void update(Element element, int amount);
-	void draw(const int playerLives) const; 
+	void draw(const int playerLives, const bool isPaused) const; 
 };
 
 #endif

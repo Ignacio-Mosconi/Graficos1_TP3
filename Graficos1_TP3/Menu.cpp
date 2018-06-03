@@ -51,12 +51,12 @@ void Menu::input()
 			_canDraw = true;
 			break;
 		case ALLEGRO_EVENT_DISPLAY_CLOSE:
-			//_quited = true;
+			_quited = true;
 			break;
 	}
 }
 
-void Menu::update()
+void Menu::update(float elapsed)
 {
 	for (int i = 0; i < MENU_OPTIONS; i++)
 	{
@@ -108,16 +108,6 @@ void Menu::draw() const
 	}
 }
 
-void Menu::show()
-{
-	while (!_started && !_quited)
-	{
-		input();
-		update();
-		draw();
-	}
-}
-
 bool Menu::isMouseOverText(ALLEGRO_FONT* font, const string& text, const int index)
 {
 	int textW = al_get_text_width(font, text.c_str());
@@ -128,4 +118,17 @@ bool Menu::isMouseOverText(ALLEGRO_FONT* font, const string& text, const int ind
 		return true;
 	else
 		return false;
+}
+
+void Menu::show()
+{
+	while (!_started && !_quited)
+	{
+		float elapsed = al_get_time() - _timeAtLastFrame;
+		_timeAtLastFrame = al_get_time();
+
+		input();
+		update(elapsed);
+		draw();
+	}
 }
