@@ -85,6 +85,8 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\include;$(SolutionDir)Libraries\Allegro\allegro_dependencies_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\lib;$(SolutionDir)Libraries\Allegro\allegro_dependencies_x86\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -125,6 +127,8 @@ copy "$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\bin\allegro_main-debug-
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\include;$(SolutionDir)Libraries\Allegro\allegro_dependencies_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

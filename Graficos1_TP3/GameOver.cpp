@@ -77,6 +77,7 @@ void GameOver::draw() const
 
 void GameOver::show(int highestScore)
 {
+	al_flush_event_queue(_queue);
 	_highestScoreText = "Highest Score: " + to_string(highestScore);
 
 	while (!_restarted && !_wentBack && !_quited)

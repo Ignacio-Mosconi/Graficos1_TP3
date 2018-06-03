@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include <iostream>
 
 Menu::Menu(ALLEGRO_DISPLAY* display) : State(display)
 {
@@ -72,11 +71,7 @@ void Menu::update(float elapsed)
 		if (_clicked)
 		{
 			if (_selected[0])
-			{
-				std::cout << _started << endl;
 				_started = true;
-				std::cout << _started << endl;
-			}
 			else
 				if (_selected[1])
 					_quited = true;
@@ -126,6 +121,8 @@ bool Menu::isMouseOverText(ALLEGRO_FONT* font, const string& text, const int ind
 
 void Menu::show()
 {
+	al_flush_event_queue(_queue);
+
 	while (!_started && !_quited)
 	{
 		float elapsed = al_get_time() - _timeAtLastFrame;

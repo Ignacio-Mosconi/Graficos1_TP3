@@ -197,6 +197,7 @@ void Game::reset()
 
 void Game::run()
 {
+	al_flush_event_queue(_queue);
 	_timeAtLastFrame = al_get_time();
 
 	while (!_gameOver & !_quited)
