@@ -169,6 +169,7 @@ copy "$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\bin\allegro_main-5.1.dl
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Spaceship.cpp" />
     <ClCompile Include="State.cpp" />
@@ -181,6 +182,7 @@ copy "$(SolutionDir)Libraries\Allegro\allegro_5.1.12_x86\bin\allegro_main-5.1.dl
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="State.h" />

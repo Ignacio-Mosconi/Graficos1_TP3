@@ -2,11 +2,16 @@
 #define DEFINITIONS_H
 
 // Display Settings
-#define GAME_NAME "The Space Wars"
+#define GAME_TITLE "The Space Wars"
 #define SCREEN_WIDTH 1600
 #define SCREEN_HEIGHT 900
 #define FRAME_TIME 1.0 / 60
 #define TIMEOUT 1.0 / 120
+
+// Menu Settings
+#define MENU_OPTIONS 2
+#define MENU_TITLE_SIZE 150
+#define MENU_OPTIONS_SIZE 100
 
 // Player Attributes
 #define PLAYER_WIDTH 128
@@ -62,6 +67,7 @@
 // HUD Attributes
 #define HUD_FONT_SIZE 52
 #define HUD_TEXT_POS_Y 22
+#define HUD_WHITE 0.75, 0.75, 0.75
 #define HUD_RED 0.75, 0.15, 0.15
 #define HUD_GREEN 0.15, 0.75, 0.15
 #define HUD_BLUE 0.15, 0.15, 0.75

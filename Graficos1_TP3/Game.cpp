@@ -46,7 +46,8 @@ void Game::input()
 				_canDraw = true;
 				break;
 			case ALLEGRO_EVENT_DISPLAY_CLOSE:
-				_gameOver = true;
+				//_gameOver = true;
+				exit;
 				break;
 		}
 }
