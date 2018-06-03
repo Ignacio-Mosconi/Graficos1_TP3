@@ -22,6 +22,7 @@ private:
 	bool _quited;
 	bool _paused;
 	int _score;
+	int _highestScore;
 
 	bool collide(Entity* a, Entity* b);
 	void playerEnemyCollision(Player* p, Enemy* e);
@@ -29,6 +30,7 @@ private:
 
 	void pause();
 	void resume();
+	void reset();
 
 protected:
 	void input();
@@ -41,7 +43,8 @@ public:
 
 	void run();
 
-	bool quited() { return _quited; }
+	inline int getHighestScore() { return _highestScore; }
+	inline bool quited() { return _quited; }
 };
 
 #endif

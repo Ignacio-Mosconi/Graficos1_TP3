@@ -30,6 +30,7 @@ public:
 
 	Bullet* getBullets() { return _bullets; }
 	inline int getLives() { return _lives; }
+	void setLives(int lives) { _lives = lives; }
 };
 
 #endif

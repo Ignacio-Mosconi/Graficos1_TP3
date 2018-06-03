@@ -7,7 +7,7 @@ State::State(ALLEGRO_DISPLAY* display)
 	_timer = al_create_timer(FRAME_TIME);
 
 	_canDraw = true;
-	_timeAtLastFrame = 0;
+	_timeAtLastFrame = al_get_time();
 
 	al_register_event_source(_queue, al_get_keyboard_event_source());
 	al_register_event_source(_queue, al_get_mouse_event_source());

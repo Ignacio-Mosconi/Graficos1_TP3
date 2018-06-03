@@ -72,7 +72,11 @@ void Menu::update(float elapsed)
 		if (_clicked)
 		{
 			if (_selected[0])
+			{
+				std::cout << _started << endl;
 				_started = true;
+				std::cout << _started << endl;
+			}
 			else
 				if (_selected[1])
 					_quited = true;

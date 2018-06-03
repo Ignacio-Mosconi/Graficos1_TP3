@@ -5,6 +5,7 @@
 #include <allegro5\allegro_ttf.h>
 #include "Menu.h"
 #include "Game.h"
+#include "GameOver.h"
 #include "Definitions.h"
 using namespace std;
 
@@ -13,6 +14,7 @@ int main(int argc, char** argv)
 	ALLEGRO_DISPLAY* display;
 	Game* game;
 	Menu* menu;
+	GameOver* gameOver;
 
 	if (!al_init())
 	{
@@ -58,19 +60,32 @@ int main(int argc, char** argv)
 	}
 	menu = new Menu(display);
 	game = new Game(display);
+	gameOver = new GameOver(display);
 
-	while (!menu->quited() && !game->quited())
+	while (!menu->quited() && !game->quited() && !gameOver->quited())
 	{
 		menu->show();
 		if (menu->started())
 		{
 			menu->setStarted(false);
-			game->run();
+			gameOver->setWentBack(false);
+			while (!game->quited() && !gameOver->wentBack() && !gameOver->quited())
+			{ 
+				game->run();
+				if (!game->quited())
+				{
+					gameOver->show(game->getHighestScore());
+					gameOver->setRestarted(false);
+				}
+			}
 		}
 	}
 
 	al_destroy_display(display);
 	al_uninstall_keyboard();
 	al_uninstall_mouse();
+	delete menu;
+	delete game;
+	delete gameOver;
 	return 0;
 }

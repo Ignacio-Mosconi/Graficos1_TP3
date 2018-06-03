@@ -19,6 +19,7 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 	_quited = false;
 	_paused = false;
 	_score = 0;
+	_highestScore = 0;
 }
 
 Game::~Game()
@@ -170,8 +171,34 @@ void Game::resume()
 	_paused = false;
 }
 
+void Game::reset()
+{
+	_player->respawn();
+	_player->setLives(PLAYER_LIVES);
+	Bullet* pAux = _pBullets;
+	for (int i = 0; i < BULLETS; i++)
+	{
+		pAux->disable();
+		pAux++;
+	}
+	for (int i = 0; i < ASTEROIDS; i++)
+		_asteroids[i]->respawn();
+	for (int i = 0; i < SPACESHIPS; i++)
+		_spaceships[i]->respawn();
+
+	_gameOver = false;
+	_quited = false;
+	_paused = false;
+	_score = 0;
+
+	_hud->update(SCORE, _score);
+	_hud->update(LIVES, _player->getLives());
+}
+
 void Game::run()
 {
+	_timeAtLastFrame = al_get_time();
+
 	while (!_gameOver & !_quited)
 	{
 		float elapsed = al_get_time() - _timeAtLastFrame;
@@ -181,5 +208,13 @@ void Game::run()
 		if (!_paused)
 			update(elapsed);
 		draw();
+	}
+	
+	if (!_quited)
+	{
+		if (_score > _highestScore)
+			_highestScore = _score;
+
+		reset();
 	}
 }
