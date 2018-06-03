@@ -8,6 +8,11 @@
 #define FRAME_TIME 1.0 / 60
 #define TIMEOUT 1.0 / 120
 
+
+// Audio Settings
+#define GAME_SAMPLES 5
+#define MENU_SAMPLES 1
+
 // Menu Settings
 #define MENU_OPTIONS 2
 #define MENU_TITLE_SIZE 150
@@ -80,6 +85,15 @@
 #define ASTEROID_PATH "Assets/Images/Asteroid.png"
 #define SPACESHIP_PATH "Assets/Images/Spaceship.png"
 #define ICON_PATH "Assets/Images/Icon.png"
+
+// Sound Paths
+
+#define MUSIC_PATH "Assets/Sounds/Music.wav"
+#define SELECT_SOUND_PATH "Assets/Sounds/Select.wav"
+#define SHOT_SOUND_PATH "Assets/Sounds/Shot.wav"
+#define EXPLOSION_SOUND_PATH "Assets/Sounds/Explosion.wav"
+#define HIT_SOUND_PATH "Assets/Sounds/Hit.wav"
+#define GAME_OVER_SOUND_PATH "Assets/Sounds/Game Over.wav"
 
 // Font Paths
 #define HUD_FONT_PATH "Assets/Fonts/Space Ranger.ttf"

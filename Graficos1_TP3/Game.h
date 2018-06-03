@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <ctime>
+#include <allegro5\allegro_audio.h>
+#include <allegro5\allegro_acodec.h>
 #include "State.h"
 #include "Player.h"
 #include "Asteroid.h"
@@ -16,6 +18,10 @@ private:
 	Asteroid* _asteroids[ASTEROIDS];
 	Spaceship* _spaceships[SPACESHIPS];
 	HUD* _hud;
+
+	ALLEGRO_SAMPLE* _music;
+	ALLEGRO_SAMPLE* _selectSound;
+	ALLEGRO_SAMPLE* _gameOverSound;
 
 	bool _gameOver;
 	bool _quited;

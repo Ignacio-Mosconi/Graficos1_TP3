@@ -15,6 +15,11 @@ Game::Game(ALLEGRO_DISPLAY* display) : State(display)
 
 	_hud = new HUD(_display);
 
+	al_reserve_samples(GAME_SAMPLES);
+	_music = al_load_sample(MUSIC_PATH);
+	_selectSound = al_load_sample(SELECT_SOUND_PATH);
+	_gameOverSound = al_load_sample(GAME_OVER_SOUND_PATH);
+
 	_gameOver = false;
 	_quited = false;
 	_paused = false;
@@ -142,7 +147,10 @@ void Game::playerEnemyCollision(Player* p, Enemy* e)
 	e->disable();
 	_hud->update(LIVES, p->getLives());
 	if (p->getLives() == 0)
+	{
 		_gameOver = true;
+		al_play_sample(_gameOverSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+	}
 }
 
 void Game::bulletEnemyCollision(Bullet* b, Enemy* e)
@@ -164,11 +172,15 @@ void Game::bulletEnemyCollision(Bullet* b, Enemy* e)
 void Game::pause()
 {
 	_paused = true;
+	al_stop_samples();
+	al_play_sample(_selectSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1,  ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 void Game::resume()
 {
 	_paused = false;
+	al_play_sample(_selectSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+	al_play_sample(_music, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 }
 
 void Game::reset()
@@ -199,6 +211,8 @@ void Game::run()
 {
 	al_flush_event_queue(_queue);
 	_timeAtLastFrame = al_get_time();
+
+	al_play_sample(_music, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_LOOP, NULL);
 
 	while (!_gameOver & !_quited)
 	{

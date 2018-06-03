@@ -3,6 +3,8 @@
 #include <allegro5\allegro_image.h>
 #include <allegro5\allegro_font.h>
 #include <allegro5\allegro_ttf.h>
+#include <allegro5\allegro_audio.h>
+#include <allegro5\allegro_acodec.h>
 #include "Menu.h"
 #include "Game.h"
 #include "GameOver.h"
@@ -58,6 +60,19 @@ int main(int argc, char** argv)
 		cerr << "Error initializing Allegro TTF." << endl;
 		return 1;
 	}
+
+	if (!al_install_audio())
+	{
+		cerr << "Error installing audio." << endl;
+		return 1;
+	}
+
+	if (!al_init_acodec_addon())
+	{
+		cerr << "Error initializing Allegro acodec." << endl;
+		return 1;
+	}
+
 	menu = new Menu(display);
 	game = new Game(display);
 	gameOver = new GameOver(display);
@@ -84,6 +99,7 @@ int main(int argc, char** argv)
 	al_destroy_display(display);
 	al_uninstall_keyboard();
 	al_uninstall_mouse();
+	al_uninstall_audio();
 	delete menu;
 	delete game;
 	delete gameOver;

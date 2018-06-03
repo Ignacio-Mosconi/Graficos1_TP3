@@ -5,6 +5,8 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_font.h>
 #include <allegro5\allegro_ttf.h>
+#include <allegro5\allegro_audio.h>
+#include <allegro5\allegro_acodec.h>
 #include "State.h"
 using namespace std;
 
@@ -13,6 +15,8 @@ class Menu : public State
 private:
 	ALLEGRO_FONT* _titleFont;
 	ALLEGRO_FONT* _optionsFont;
+
+	ALLEGRO_SAMPLE* _selectSound;
 
 	string _titleText;
 	string _optionsText[MENU_OPTIONS];

@@ -3,6 +3,9 @@
 Player::Player(int x, int y, const char* imagePath) : Entity(x, y, imagePath)
 {
 	_bullets = new Bullet[BULLETS];
+	_shotSound = al_load_sample(SHOT_SOUND_PATH);
+	_explosionSound = al_load_sample(EXPLOSION_SOUND_PATH);
+
 	_lives = PLAYER_LIVES;
 	_speed = PLAYER_SPEED;
 	_shotCooldown = 0;
@@ -57,6 +60,7 @@ void Player::shoot(float elapsed)
 			{
 				pAux->setPosition(_x + PLAYER_WIDTH, _y + PLAYER_HEIGHT / 2);
 				pAux->enable();
+				al_play_sample(_shotSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 				break;
 			}
 			pAux++;
@@ -86,6 +90,7 @@ void Player::update(float elapsed)
 void Player::die()
 {
 	_lives--;
+	al_play_sample(_explosionSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 	if (_lives > 0)
 		respawn();
 }

@@ -13,6 +13,9 @@ class Player : public Entity
 {
 private:
 	Bullet* _bullets;
+	ALLEGRO_SAMPLE* _shotSound;
+	ALLEGRO_SAMPLE* _explosionSound;
+
 	int _lives;
 	int _speed;
 	float _shotCooldown;

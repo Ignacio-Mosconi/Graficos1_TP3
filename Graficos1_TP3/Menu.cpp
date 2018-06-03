@@ -5,6 +5,8 @@ Menu::Menu(ALLEGRO_DISPLAY* display) : State(display)
 	_titleFont = al_load_font(MENU_FONT_PATH, MENU_TITLE_SIZE, false);
 	_optionsFont = al_load_font(MENU_FONT_PATH, MENU_OPTIONS_SIZE, false);
 
+	_selectSound = al_load_sample(SELECT_SOUND_PATH);
+
 	_titleText = GAME_TITLE;
 	_optionsText[0] = "Play";
 	_optionsText[1] = "Exit";
@@ -62,7 +64,10 @@ void Menu::update(float elapsed)
 		if (isMouseOverText(_optionsFont, _optionsText[i], i))
 		{
 			if (!_selected[i])
+			{
 				_selected[i] = true;
+				al_play_sample(_selectSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+			}
 		}
 		else
 			if (_selected[i])
@@ -71,7 +76,10 @@ void Menu::update(float elapsed)
 		if (_clicked)
 		{
 			if (_selected[0])
+			{
 				_started = true;
+				al_play_sample(_selectSound, 1, ALLEGRO_AUDIO_PAN_NONE, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+			}
 			else
 				if (_selected[1])
 					_quited = true;
